@@ -1,6 +1,20 @@
 import discord
 import aiohttp
 import asyncio
+import sys
+import time
+
+# Funzione di animazione per l'input in rosso
+def animazione_input(testo):
+    for carattere in testo:
+        sys.stdout.write("\033[38;2;255;0;0m" + carattere + "\033[0m")
+        sys.stdout.flush()
+        time.sleep(0.02)
+
+# Funzione per chiedere input con animazione
+def chiedi_input(prompt):
+    animazione_input(prompt)
+    return input()
 
 async def emoji_spammer(bot_token, server_id, emoji_url, emoji_name, quantity):
     intents = discord.Intents.default()
@@ -29,12 +43,12 @@ async def emoji_spammer(bot_token, server_id, emoji_url, emoji_name, quantity):
 
     await client.start(bot_token)
 
-# Chiedere i dati all'utente
-bot_token = input("Inserisci il token del bot >>> ")
-server_id = input("Inserisci l'ID del server >>>")
-emoji_url = input("Inserisci il link dell'immagine per l'emoji >>> ")
-emoji_name = input("Inserisci il nome dell'emoji >>> ")
-quantity = int(input("Quante emoji vuoi creare >>> "))  # Richiesta del numero di emoji da creare
+# Chiedere i dati all'utente con animazione per ogni input
+bot_token = chiedi_input("Inserisci il token del bot >>> ")
+server_id = chiedi_input("Inserisci l'ID del server >>> ")
+emoji_url = chiedi_input("Inserisci il link dell'immagine per l'emoji >>> ")
+emoji_name = chiedi_input("Inserisci il nome dell'emoji >>> ")
+quantity = int(chiedi_input("Quante emoji vuoi creare >>> "))
 
 # Esegui il loop di eventi
 asyncio.run(emoji_spammer(bot_token, server_id, emoji_url, emoji_name, quantity))

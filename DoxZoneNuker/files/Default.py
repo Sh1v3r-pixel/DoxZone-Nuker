@@ -3,25 +3,53 @@ from discord.ext import commands
 import asyncio
 import random
 import aiohttp
+import sys
+import time
 
+# Funzione per l'animazione di scrittura rossa
+def animazione_input(testo):
+    for carattere in testo:
+        sys.stdout.write("\033[38;2;255;0;0m" + carattere + "\033[0m")
+        sys.stdout.flush()
+        time.sleep(0.03)
+
+# Funzione per chiedere input all'utente con animazione rossa
 def chiedi_input():
-    token = input("Token bot >>> ")
-    server_id = int(input("Server ID >>> "))
-
-    messaggio_spam_1 = input("Primo messaggio da spammare >>> ")
-    messaggio_spam_2 = input("Secondo messaggio da spammare >>> ")
-    messaggio_spam_3 = input("Terzo messaggio da spammare >>> ")
+    animazione_input("Token bot >>> ")
+    token = input("\033[38;2;255;0;0m")
     
-    nuovo_nome_server = input("Nuovo nome del server >>> ")
-    numero_canali = int(input("Quanti canali vuoi creare >>> "))
+    animazione_input("Server ID >>> ")
+    server_id = int(input("\033[38;2;255;0;0m"))
 
-    nome_canali_1 = input("Nome primo canale >>> ")
-    nome_canali_2 = input("Nome secondo canale >>> ")
-    nome_canali_3 = input("Nome terzo canale >>> ")
+    animazione_input("Primo messaggio da spammare >>> ")
+    messaggio_spam_1 = input("\033[38;2;255;0;0m")
+    
+    animazione_input("Secondo messaggio da spammare >>> ")
+    messaggio_spam_2 = input("\033[38;2;255;0;0m")
+    
+    animazione_input("Terzo messaggio da spammare >>> ")
+    messaggio_spam_3 = input("\033[38;2;255;0;0m")
+    
+    animazione_input("Nuovo nome del server >>> ")
+    nuovo_nome_server = input("\033[38;2;255;0;0m")
+    
+    animazione_input("Quanti canali vuoi creare >>> ")
+    numero_canali = int(input("\033[38;2;255;0;0m"))
 
-    nickname_member = input("Che nickname vuoi dare ai membri del server? >>> ")
+    animazione_input("Nome primo canale >>> ")
+    nome_canali_1 = input("\033[38;2;255;0;0m")
+    
+    animazione_input("Nome secondo canale >>> ")
+    nome_canali_2 = input("\033[38;2;255;0;0m")
+    
+    animazione_input("Nome terzo canale >>> ")
+    nome_canali_3 = input("\033[38;2;255;0;0m")
 
-    server_icon_url = input("Inserisci il link dell'immagine per il server >>> ")
+    animazione_input("Che nickname vuoi dare ai membri del server? >>> ")
+    nickname_member = input("\033[38;2;255;0;0m")
+
+    animazione_input("Inserisci il link dell'immagine per il server >>> ")
+    server_icon_url = input("\033[38;2;255;0;0m")
     
     return (token, server_id, 
             [messaggio_spam_1, messaggio_spam_2, messaggio_spam_3], 
@@ -29,6 +57,7 @@ def chiedi_input():
             [nome_canali_1, nome_canali_2, nome_canali_3],
             nickname_member, server_icon_url)
 
+# Chiede gli input e li memorizza
 token, server_id, messaggi_spam, nuovo_nome_server, numero_canali, nomi_canali, nickname_member, server_icon_url = chiedi_input()
 
 intents = discord.Intents.default()
