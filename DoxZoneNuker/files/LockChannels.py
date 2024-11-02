@@ -4,7 +4,6 @@ import asyncio
 import sys
 import time
 
-# Funzione per l'animazione della scrittura in rosso
 def animazione_testo(testo):
     for carattere in testo:
         sys.stdout.write("\033[38;2;255;0;0m" + carattere + "\033[0m")
@@ -12,7 +11,6 @@ def animazione_testo(testo):
         time.sleep(0.02)
     sys.stdout.write("\n")
 
-# Funzione per chiedere l'input all'utente
 def chiedi_input():
     animazione_testo("Inserisci il token del bot >>> ")
     token = input("\033[38;2;255;0;0m")  # Colore per input
@@ -20,7 +18,6 @@ def chiedi_input():
     server_id = int(input("\033[38;2;255;0;0m"))
     return token, server_id
 
-# Funzione principale per bloccare i canali
 async def lock_channels(bot, guild):
     for channel in guild.channels:
         try:

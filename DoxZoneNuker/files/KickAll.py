@@ -2,22 +2,19 @@ import discord
 from discord.ext import commands
 import sys
 
-# Controllo degli argomenti
 if len(sys.argv) < 3:
     print("Uso: python KickAll.py <bot_token> <server_id>")
     sys.exit(1)
 
 bot_token = sys.argv[1]
-server_id = sys.argv[2].strip()  # Rimuovi spazi
+server_id = sys.argv[2].strip()
 
-# Verifica se l'ID del server è un numero
 if not server_id.isdigit():
     print("L'ID del server deve essere un numero valido.")
     sys.exit(1)
 
 server_id = int(server_id)
 
-# Intents e bot setup
 intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -35,7 +32,7 @@ async def on_ready():
     print(f"Inizio a cacciare membri dal server: {guild.name}")
 
     for member in guild.members:
-        if member.id != bot.user.id:  # Non cacciare il bot stesso
+        if member.id != bot.user.id:
             try:
                 await member.kick(reason="Cacciato dal bot")
                 print(f"Cacciato: {member.name}#{member.discriminator}")

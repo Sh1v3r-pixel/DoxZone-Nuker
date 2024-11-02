@@ -5,7 +5,6 @@ import time
 import sys
 import asyncio
 
-# Funzione per l'animazione della scrittura in rosso
 def animazione_testo(testo):
     for carattere in testo:
         sys.stdout.write("\033[38;2;255;0;0m" + carattere + "\033[0m")
@@ -13,10 +12,9 @@ def animazione_testo(testo):
         time.sleep(0.02)
     sys.stdout.write("\n")
 
-# Funzione principale per cambiare il nome
 async def change_names(bot_token, server_id, new_name):
     intents = discord.Intents.default()
-    intents.members = True  # Assicurati di avere accesso ai membri
+    intents.members = True
     bot = commands.Bot(command_prefix="!", intents=intents)
 
     @bot.event
@@ -28,8 +26,7 @@ async def change_names(bot_token, server_id, new_name):
             animazione_testo("ID del server non valido.")
             await bot.close()
             return
-
-        # Cambia il nome di ogni membro
+            
         for member in guild.members:
             try:
                 await member.edit(nick=new_name)

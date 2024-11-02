@@ -4,14 +4,12 @@ import asyncio
 import sys
 import time
 
-# Funzione di animazione per l'input in rosso
 def animazione_input(testo):
     for carattere in testo:
         sys.stdout.write("\033[38;2;255;0;0m" + carattere + "\033[0m")
         sys.stdout.flush()
         time.sleep(0.02)
 
-# Funzione per chiedere input con animazione
 def chiedi_input(prompt):
     animazione_input(prompt)
     return input()
@@ -29,11 +27,9 @@ async def emoji_spammer(bot_token, server_id, emoji_url, emoji_name, quantity):
         guild = client.get_guild(int(server_id))
 
         for i in range(quantity):
-            # Creazione dell'emoji
             await guild.create_custom_emoji(name=f"{emoji_name}_{i+1}", image=await fetch_image(emoji_url))
             print(f"Emoji '{emoji_name}_{i+1}' creata.")
 
-        # Chiudi il client
         await client.close()
 
     async def fetch_image(url):

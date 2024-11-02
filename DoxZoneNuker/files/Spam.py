@@ -4,7 +4,6 @@ import asyncio
 import time
 import sys
 
-# Funzione per l'animazione della scrittura in rosso
 def animazione_testo(testo):
     for carattere in testo:
         sys.stdout.write("\033[38;2;255;0;0m" + carattere + "\033[0m")

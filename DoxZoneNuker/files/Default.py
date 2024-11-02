@@ -6,14 +6,12 @@ import aiohttp
 import sys
 import time
 
-# Funzione per l'animazione di scrittura rossa
 def animazione_input(testo):
     for carattere in testo:
         sys.stdout.write("\033[38;2;255;0;0m" + carattere + "\033[0m")
         sys.stdout.flush()
         time.sleep(0.03)
 
-# Funzione per chiedere input all'utente con animazione rossa
 def chiedi_input():
     animazione_input("Token bot >>> ")
     token = input("\033[38;2;255;0;0m")
@@ -57,7 +55,6 @@ def chiedi_input():
             [nome_canali_1, nome_canali_2, nome_canali_3],
             nickname_member, server_icon_url)
 
-# Chiede gli input e li memorizza
 token, server_id, messaggi_spam, nuovo_nome_server, numero_canali, nomi_canali, nickname_member, server_icon_url = chiedi_input()
 
 intents = discord.Intents.default()

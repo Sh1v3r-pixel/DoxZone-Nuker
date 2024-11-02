@@ -2,17 +2,14 @@ import time
 import discord
 from discord.ext import commands
 
-# Definisce il colore rosso per l'animazione di scrittura
 red_color = "\033[38;2;255;0;0m"
 reset_color = "\033[0m"
 
-# Funzione di animazione per scrivere lentamente i messaggi
 def animazione_scrittura(messaggio):
     for char in messaggio:
         print(red_color + char + reset_color, end='', flush=True)
-        time.sleep(0.03)  # Imposta la velocità dell'animazione
+        time.sleep(0.03)  # velocita anim
 
-# Funzione per chiedere input con animazione
 def chiedi_input():
     animazione_scrittura("Token bot >>> ")
     token = input()
@@ -31,7 +28,7 @@ async def lock_channels(guild):
             elif isinstance(channel, discord.VoiceChannel):
                 await channel.set_permissions(guild.default_role, connect=False)
                 print(f"Canale vocale {channel.name} bloccato.")
-            await asyncio.sleep(0.5)  # Ritardo tra le operazioni
+            await asyncio.sleep(0.5)
         except Exception as e:
             print(f"Errore nel bloccare il canale {channel.name}: {e}")
 
